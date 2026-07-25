@@ -64,6 +64,6 @@ Azure OpenAI · Pydantic · MLflow · Streamlit
 
 ## Status
 
-| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
+1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete 
 
 ![DocuLens Dashboard](assets/dashboard.png)
