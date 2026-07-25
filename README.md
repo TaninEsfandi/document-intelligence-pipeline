@@ -36,7 +36,7 @@ DocuLens is designed to work with multiple document sources:
 
 ```bash
 git clone https://github.com/TaninEsfandi/document-intelligence-pipeline
-cd document-intelligence-pipeline
+cd docuLens
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -47,15 +47,14 @@ pip install -r requirements.txt
 ```text
 docuLens/
 ├── app/
-│   └── connectors/
-│       └── fda.py          # FDA MAUDE API connector
-├── configs/                # Configuration files
-├── data/                   # Local data (gitignored)
-├── results/                # Output files (gitignored)
-├── .gitignore
-└── README.md
-└── requirements.txt
-
+│   ├── connectors/
+│   │   └── fda.py
+│   ├── transformers/
+│   │   └── fda_transformers.py
+│   ├── models/
+│   │   └── report.py
+│   └── main.py
+│   └── streamlit_app.py
 ```
 
 ## Tech Stack
@@ -65,4 +64,6 @@ Azure OpenAI · Pydantic · MLflow · Streamlit
 
 ## Status
 
-Active development — Layer 1 in progress.
+| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
+
+![DocuLens Dashboard](assets/dashboard.png)
