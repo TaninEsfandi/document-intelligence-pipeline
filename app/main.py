@@ -3,6 +3,7 @@ from app.connectors.fda import fetch_reports
 from app.transformers.fda_transformers import transform_reports
 import uvicorn
 from app.models.report import ReportOutput
+
 app = FastAPI(
     title = "Connector API",
     description= "This is DocuLens FastAPI application"

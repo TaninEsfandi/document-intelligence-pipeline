@@ -1,4 +1,5 @@
 import json
+
 def transform_reports(data):
     extracted_list = []
     for report in data.get("results", []):
