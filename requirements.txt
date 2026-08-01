@@ -14,7 +14,7 @@ charset-normalizer==3.4.9
 chromadb==1.5.9
 click==8.4.2
 distro==1.9.0
--e git+https://github.com/TaninEsfandi/document-intelligence-pipeline@1a55ba68f95ef121ec2a0713ff96341b12ea03e9#egg=doculens
+-e git+https://github.com/TaninEsfandi/document-intelligence-pipeline@05de57c72ed65676bc59b667009496b31cd698a7#egg=doculens
 durationpy==0.10
 fastapi==0.139.2
 filelock==3.32.2
@@ -50,6 +50,7 @@ narwhals==2.24.0
 networkx==3.6.1
 numpy==2.5.1
 oauthlib==3.3.1
+ollama==0.6.2
 onnxruntime==1.28.0
 openai==2.50.0
 opentelemetry-api==1.44.0
