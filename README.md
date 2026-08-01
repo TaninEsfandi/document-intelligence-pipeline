@@ -18,9 +18,9 @@ DocuLens is built in three layers:
 
 | Layer | What it does | Status |
 |-------|-------------|--------|
-| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | In Progress |
-| 2 — RAG Assistant | Ask natural language questions, get cited answers | Planned |
-| 3 — Structured Extraction | Extract validated JSON fields, multi-model evaluation | Planned |
+| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | ✅ Complete |
+| 2 — RAG Assistant | Ask natural language questions, get cited answers | ✅ Complete |
+| 3 — Structured Extraction | Extract validated JSON fields, multi-model evaluation | 📋 Planned |
 
 ## Connectors
 
@@ -53,17 +53,25 @@ docuLens/
 │   │   └── fda_transformers.py
 │   ├── models/
 │   │   └── report.py
-│   └── main.py
+│   ├── rag/
+│   │   ├── embedder.py
+│   │   ├── vector_store.py
+│   │   ├── retriever.py
+│   │   └── runner.py
+│   ├── main.py
 │   └── streamlit_app.py
 ```
 
 ## Tech Stack
 
-Python · FastAPI · LangChain · ChromaDB · 
-Azure OpenAI · Pydantic · MLflow · Streamlit
+Python · FastAPI · ChromaDB · Pydantic · Streamlit · 
+sentence-transformers · Ollama · MLflow
 
 ## Status
 
-1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete 
+| Layer | What it does | Status |
+|-------|-------------|--------|
+| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | ✅ Complete |
 
 ![DocuLens Dashboard](assets/dashboard.png)
+![DocuLens RAG Chat](assets/rag_demo.png)
