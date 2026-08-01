@@ -18,9 +18,9 @@ DocuLens is built in three layers:
 
 | Layer | What it does | Status |
 |-------|-------------|--------|
-| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | ✅ Complete |
-| 2 — RAG Assistant | Ask natural language questions, get cited answers | ✅ Complete |
-| 3 — Structured Extraction | Extract validated JSON fields, multi-model evaluation | 📋 Planned |
+| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
+| 2 — RAG Assistant | Ask natural language questions, get cited answers | Complete |
+| 3 — Structured Extraction | Extract validated JSON fields, multi-model evaluation | Planned |
 
 ## Connectors
 
@@ -71,7 +71,7 @@ sentence-transformers · Ollama · MLflow
 
 | Layer | What it does | Status |
 |-------|-------------|--------|
-| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | ✅ Complete |
+| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
 
 ![DocuLens Dashboard](assets/dashboard.png)
 ![DocuLens RAG Chat](assets/rag_demo.png)
