@@ -67,11 +67,7 @@ docuLens/
 Python · FastAPI · ChromaDB · Pydantic · Streamlit · 
 sentence-transformers · Ollama · MLflow
 
-## Status
-
-| Layer | What it does | Status |
-|-------|-------------|--------|
-| 1 — Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
+## Demo
 
 ![DocuLens Dashboard](assets/dashboard.png)
 ![DocuLens RAG Chat](assets/rag_demo.png)
