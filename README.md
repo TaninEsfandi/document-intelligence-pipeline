@@ -53,21 +53,21 @@ docuLens/
 │   │   └── fda_transformers.py
 │   ├── models/
 │   │   ├── report.py
-│   │   ├── extraction.py     ← new
-│   │   └── critic.py         ← new
+│   │   ├── extraction.py     
+│   │   └── critic.py         
 │   ├── rag/
 │   │   ├── embedder.py
 │   │   ├── vector_store.py
 │   │   ├── retriever.py
 │   │   ├── runner.py
-│   │   ├── extractor.py      ← new
-│   │   └── evaluator.py      ← new
+│   │   ├── extractor.py      
+│   │   └── evaluator.py      
 │   ├── main.py
 │   └── streamlit_app.py
 ├── configs/
 │   └── prompts/
-│       ├── extraction_prompt.txt  ← new
-│       └── critic_prompt.txt      ← new
+│       ├── extraction_prompt.txt  
+│       └── critic_prompt.txt      
 ```
 
 ## Tech Stack
