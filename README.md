@@ -18,9 +18,9 @@ DocuLens is built in three layers:
 
 | Layer | What it does | Status |
 |-------|-------------|--------|
-| 1: Document Explorer | Connect to public APIs, retrieve documents, AI summaries | Complete |
-| 2: RAG Assistant | Ask natural language questions, get cited answers | Complete |
-| 3: Structured Extraction | Extract validated JSON fields, multi-model evaluation | Planned |
+| 1 — Document Explorer | Connect to public APIs, retrieve documents | ✅ Complete |
+| 2 — RAG Assistant | Ask natural language questions, get cited answers | ✅ Complete |
+| 3 — Structured Extraction | Extract validated causal chains, two-pass evaluation | ✅ Complete |
 
 ## Connectors
 
@@ -49,25 +49,34 @@ docuLens/
 ├── app/
 │   ├── connectors/
 │   │   └── fda.py
-│   ├── transformers/
+│   ├── report_transformers/
 │   │   └── fda_transformers.py
 │   ├── models/
-│   │   └── report.py
+│   │   ├── report.py
+│   │   ├── extraction.py     ← new
+│   │   └── critic.py         ← new
 │   ├── rag/
 │   │   ├── embedder.py
 │   │   ├── vector_store.py
 │   │   ├── retriever.py
-│   │   └── runner.py
+│   │   ├── runner.py
+│   │   ├── extractor.py      ← new
+│   │   └── evaluator.py      ← new
 │   ├── main.py
 │   └── streamlit_app.py
+├── configs/
+│   └── prompts/
+│       ├── extraction_prompt.txt  ← new
+│       └── critic_prompt.txt      ← new
 ```
 
 ## Tech Stack
 
 Python · FastAPI · ChromaDB · Pydantic · Streamlit · 
-sentence-transformers · Ollama · MLflow
+sentence-transformers · Ollama · MLflow · llama3.1:8b · two-pass LLM evaluation
 
 ## Demo
 
 ![DocuLens Dashboard](assets/dashboard.png)
 ![DocuLens RAG Chat](assets/rag_demo.png)
+![DocuLens Structured Extraction](assets/layer3_demo.png)
