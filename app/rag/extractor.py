@@ -11,7 +11,7 @@ def extract_causal_chain(report_text: str) -> CausalChainExtraction:
     user_message = f"{system_prompt}\n\nReport to analyze:\n{report_text}"
     
     response = ollama.chat(
-        model="llama3.2",
+        model="llama3.1:8b",
         messages=[{"role": "user", "content": user_message}],
         format=CausalChainExtraction.model_json_schema()
     )
