@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.connectors.fda import fetch_reports
-from app.transformers.fda_transformers import transform_reports
+from app.report_transformers.fda_transformers import transform_reports
 import uvicorn
 from app.models.report import ReportOutput
 from app.rag.extractor import extract_causal_chain

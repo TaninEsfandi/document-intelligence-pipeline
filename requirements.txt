@@ -14,7 +14,7 @@ charset-normalizer==3.4.9
 chromadb==1.5.9
 click==8.4.2
 distro==1.9.0
--e git+https://github.com/TaninEsfandi/document-intelligence-pipeline@05de57c72ed65676bc59b667009496b31cd698a7#egg=doculens
+-e git+https://github.com/TaninEsfandi/document-intelligence-pipeline@465064159334683c1e8a185258d92b62a9a2d682#egg=doculens
 durationpy==0.10
 fastapi==0.139.2
 filelock==3.32.2
