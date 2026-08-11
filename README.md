@@ -20,7 +20,7 @@ DocuLens is built in three layers:
 |-------|-------------|--------|
 | 1 — Document Explorer | Connect to public APIs, retrieve documents | ✅ Complete |
 | 2 — RAG Assistant | Ask natural language questions, get cited answers | ✅ Complete |
-| 3 — Structured Extraction | Extract validated causal chains, two-pass evaluation | ✅ Complete |
+| 3 — Structured Extraction | Extract validated causal chains, two-pass LLM evaluation | ✅ Complete |
 
 ## Connectors
 
