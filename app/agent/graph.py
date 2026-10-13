@@ -10,7 +10,8 @@ def run_agent(question: str) -> dict:
     result = agent.invoke({"messages": [{"role": "user", "content": question}]})
     return {
         "answer": result["messages"][-1].content,
-        "messages": [m.content for m in result["messages"]]
+        "messages": [m.content for m in result["messages"]],
+        "raw_messages": result["messages"]  # ← add this line
     }
 
 if __name__ == "__main__":
