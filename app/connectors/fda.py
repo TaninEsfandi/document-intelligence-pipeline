@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 # Define the base URL
 api_url = "https://api.fda.gov/device/event.json"
@@ -13,6 +14,7 @@ def fetch_reports(device_name, limit = 10):
     responds = requests.get(api_url, params = query_params)
     if responds.status_code == 200:
         data = responds.json()
+        os.makedirs("results", exist_ok=True)
         with open ("results/extracted_reports.json", "w") as file:
             json.dump(data, file, indent=4)
             return data
