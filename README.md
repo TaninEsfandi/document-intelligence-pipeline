@@ -21,7 +21,7 @@ DocuLens is built in four layers:
 | 1 — Document Explorer | Connect to public APIs, retrieve documents | Complete |
 | 2 — RAG Assistant | Ask natural language questions, get cited answers | Complete |
 | 3 — Structured Extraction | Extract validated causal chains, two-pass LLM evaluation | Complete |
-| 4 — Agent | ReAct agent that orchestrates search, retrieval, and extraction tools | In Progress |
+| 4 — Agent | ReAct agent that orchestrates search, retrieval, and extraction tools | Complete |
 
 ## Connectors
 
@@ -91,7 +91,7 @@ The LangGraph ReAct agent selects among three tools:
 - `retrieve_report` — retrieves FDA reports by device
 - `extract_structured_fields` — extracts and validates causal-chain fields
 
-Agent evaluation for tool-selection accuracy, groundedness, and latency is currently in progress.
+Evaluation results: 5/5 tool selection accuracy, 5/5 groundedness, 21.5s average latency
 
 ## Demo
 
