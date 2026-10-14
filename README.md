@@ -38,18 +38,24 @@ DocuLens is built in four layers:
 
 ## Quick Start
 
+**With Docker (recommended):**
 ```bash
 git clone https://github.com/TaninEsfandi/document-intelligence-pipeline.git
 cd document-intelligence-pipeline
+docker compose up --build
+```
+Then pull the LLM model (first time only):
+```bash
+docker compose exec ollama ollama pull llama3.1:8b
+```
+Open http://localhost:8501
+
+**Without Docker:**
+```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.docker.txt
 pip install -e .
-```
-
-Structured extraction and the agent use a local LLM through [Ollama](https://ollama.com). Install Ollama, then pull the model:
-
-```bash
 ollama pull llama3.1:8b
 ```
 
