@@ -51,6 +51,8 @@ docker compose exec ollama ollama pull llama3.1:8b
 Open http://localhost:8501
 
 **Without Docker:**
+
+Requires Ollama installed — see [ollama.com](https://ollama.com)
 ```bash
 python -m venv .venv
 source .venv/bin/activate
