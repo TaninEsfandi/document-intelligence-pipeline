@@ -1,8 +1,9 @@
+import os
 from langgraph.prebuilt import create_react_agent
 from langchain_ollama import ChatOllama
 from app.agent.tools import search_documents, retrieve_report, extract_structured_fields
 
-llm = ChatOllama(model="llama3.1:8b", base_url="http://localhost:11434")
+llm = ChatOllama(model="llama3.1:8b", base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"))
 tools = [search_documents, retrieve_report, extract_structured_fields]
 agent = create_react_agent(llm, tools)
 
