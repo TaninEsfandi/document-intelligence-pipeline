@@ -2,10 +2,13 @@ import ollama
 from app.rag.embedder import embed_texts
 from app.rag.vector_store import search_reports
 from app.config import OLLAMA_BASE_URL, OLLAMA_MODEL
+from app.logger import get_logger
 
 client = ollama.Client(host=OLLAMA_BASE_URL)
+logger = get_logger(__name__)
 
 def answer_question(question: str) -> str:
+    logger.info(f"Answering question: {question[:50]}")
     # Step 1: embed the question
     embedded_question = embed_texts([question])[0]
     
