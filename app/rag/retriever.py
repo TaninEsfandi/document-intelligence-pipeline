@@ -1,6 +1,9 @@
 import ollama
 from app.rag.embedder import embed_texts
 from app.rag.vector_store import search_reports
+from app.config import OLLAMA_BASE_URL, OLLAMA_MODEL
+
+client = ollama.Client(host=OLLAMA_BASE_URL)
 
 def answer_question(question: str) -> str:
     # Step 1: embed the question
@@ -22,8 +25,8 @@ Question: {question}
 Answer:"""
     
     # Step 4: call Ollama
-    response = ollama.chat(
-        model="llama3.2",
+    response = client.chat(
+        model=OLLAMA_MODEL,
         messages=[{"role": "user", "content": prompt}]
     )
     

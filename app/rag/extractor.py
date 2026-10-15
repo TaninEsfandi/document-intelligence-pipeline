@@ -2,6 +2,9 @@ import ollama
 import json
 from pathlib import Path
 from app.models.extraction import CausalChainExtraction
+from app.config import OLLAMA_BASE_URL, OLLAMA_MODEL
+
+client = ollama.Client(host=OLLAMA_BASE_URL)
 
 def extract_causal_chain(report_text: str) -> CausalChainExtraction:
     
@@ -10,8 +13,8 @@ def extract_causal_chain(report_text: str) -> CausalChainExtraction:
     
     user_message = f"{system_prompt}\n\nReport to analyze:\n{report_text}"
     
-    response = ollama.chat(
-        model="llama3.1:8b",
+    response = client.chat(
+        model=OLLAMA_MODEL,
         messages=[{"role": "user", "content": user_message}],
         format=CausalChainExtraction.model_json_schema()
     )

@@ -11,4 +11,5 @@ langgraph
 langchain-core
 pydantic
 requests
+python-dotenv
 mcp<2

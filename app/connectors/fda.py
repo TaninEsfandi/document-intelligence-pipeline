@@ -1,9 +1,7 @@
 import requests
 import json
 import os
-
-# Define the base URL
-api_url = "https://api.fda.gov/device/event.json"
+from app.config import FDA_API_URL
 
 # Pass the dictionary to the params arguments
 def fetch_reports(device_name, limit = 10):
@@ -11,7 +9,7 @@ def fetch_reports(device_name, limit = 10):
         "search": f"device.generic_name:{device_name}",
         "limit": limit
     }
-    responds = requests.get(api_url, params = query_params)
+    responds = requests.get(FDA_API_URL, params = query_params)
     if responds.status_code == 200:
         data = responds.json()
         os.makedirs("results", exist_ok=True)

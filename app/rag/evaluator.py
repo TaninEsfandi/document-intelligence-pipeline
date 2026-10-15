@@ -1,9 +1,12 @@
 import ollama
 import json
 from app.models.extraction import CausalChainExtraction
+from app.config import OLLAMA_BASE_URL, OLLAMA_MODEL
 from app.models.critic import CriticOutput
 from app.rag.extractor import extract_causal_chain
 from pathlib import Path
+
+client = ollama.Client(host=OLLAMA_BASE_URL)
 
 def evaluate_extraction(report_text: str, extraction: CausalChainExtraction) -> CriticOutput:
     prompt_path = Path("configs/prompts/critic_prompt.txt")
@@ -11,8 +14,8 @@ def evaluate_extraction(report_text: str, extraction: CausalChainExtraction) -> 
 
     user_message = f"{system_prompt}\n\nThe Extracted field to evaluate against the report text:\n{extraction}\n{report_text}"
     
-    response = ollama.chat(
-        model="llama3.1:8b",
+    response = client.chat(
+        model=OLLAMA_MODEL,
         messages=[{"role": "user", "content": user_message}],
         format=CriticOutput.model_json_schema()
     )
