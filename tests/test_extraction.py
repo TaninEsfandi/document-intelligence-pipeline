@@ -1,3 +1,5 @@
+import pytest
+from pydantic import ValidationError
 from app.models.extraction import CausalChainExtraction
 from app.models.critic import CriticOutput
 
@@ -15,7 +17,7 @@ def test_causal_chain_extraction_schema():
     assert extraction.traceability == "partially inferred"
 
 def test_invalid_domain_rejected():
-    try:
+    with pytest.raises(ValidationError):
         CausalChainExtraction(
             root_cause="test",
             hazardous_situation="test",
@@ -24,9 +26,6 @@ def test_invalid_domain_rejected():
             traceability="partially inferred",
             domain="InvalidDomain"
         )
-        assert False, "Should have raised an error"
-    except Exception:
-        assert True
 
 def test_critic_output_schema():
     critic = CriticOutput(
