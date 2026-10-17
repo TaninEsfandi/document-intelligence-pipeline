@@ -7,16 +7,14 @@ from app.logger import get_logger
 client = ollama.Client(host=OLLAMA_BASE_URL)
 logger = get_logger(__name__)
 
-def answer_question(question: str) -> str:
+def answer_question(question: str) -> dict:
     logger.info(f"Answering question: {question[:50]}")
-    # Step 1: embed the question
     embedded_question = embed_texts([question])[0]
-    
-    # Step 2: search ChromaDB
     results = search_reports(embedded_question)
     
-    # Step 3: build prompt
     context = "\n\n".join(results["documents"][0])
+    metadatas = results["metadatas"][0]
+    
     prompt = f"""You are a medical device safety assistant.
 Use the following FDA adverse event reports to answer the question.
 
@@ -27,14 +25,24 @@ Question: {question}
 
 Answer:"""
     
-    # Step 4: call Ollama
     response = client.chat(
         model=OLLAMA_MODEL,
         messages=[{"role": "user", "content": prompt}]
     )
     
-    # Step 5: return answer
-    return response.message.content
+    sources = [
+        {
+            "report_number": m.get("report_number", "Unknown"),
+            "device_name": m.get("device_name", "Unknown"),
+            "event_type": m.get("event_type", "Unknown")
+        }
+        for m in metadatas
+    ]
+    
+    return {
+        "answer": response.message.content,
+        "sources": sources
+    }
 
 if __name__ == "__main__":
     question = input("Ask a question: ")

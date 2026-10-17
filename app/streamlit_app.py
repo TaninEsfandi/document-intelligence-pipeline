@@ -17,8 +17,12 @@ st.divider()
 st.subheader("Ask a Question")
 question = st.text_input("Your question", placeholder="e.g. What went wrong with pacemakers?")
 if st.button("Ask"):
-    answer = answer_question(question)
-    st.write(answer)
+    result = answer_question(question)
+    st.write(result["answer"])
+
+    st.markdown("**Sources:**")
+    for source in result["sources"]:
+        st.write(f"• Report {source['report_number']} — {source['device_name']} ({source['event_type']})")
     
 st.divider()
 st.subheader("Extract Causal Chain")
