@@ -1,5 +1,6 @@
 import time
 import json
+from pathlib import Path
 from app.agent.graph import run_agent
 
 TEST_CASES = [
@@ -57,6 +58,7 @@ def run_evaluation():
     print(f"Groundedness: {grounded}/{len(results)} ({round(grounded/len(results)*100)}%)")
     print(f"Average latency: {avg_latency}s")
 
+    Path("results").mkdir(exist_ok=True)
     with open("results/agent_eval.json", "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nResults saved to results/agent_eval.json")
