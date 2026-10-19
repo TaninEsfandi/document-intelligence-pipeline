@@ -28,6 +28,8 @@ DocuLens is built in four layers:
 | 3 — Structured Extraction | Extract validated causal chains, two-pass LLM evaluation | ✅ Complete |
 | 4 — Agent | ReAct agent that orchestrates search, retrieval, and extraction tools | ✅ Complete |
 
+For the design decisions behind each layer, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Results
 
 | Metric | Result |
@@ -35,6 +37,8 @@ DocuLens is built in four layers:
 | Agent tool selection accuracy | 5/5 |
 | Answer groundedness | 5/5 |
 | Average agent latency | 21.5s |
+
+Measured on 5 test questions with `app/agent/evaluator.py`. Groundedness is a heuristic check: the answer is longer than 50 characters and doesn't say "unknown".
 
 ## Quick Start
 
@@ -58,6 +62,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.docker.txt
 pip install -e .
+cp .env.example .env   # optional: defaults work for a local Ollama
 ollama pull llama3.1:8b
 ```
 
@@ -101,6 +106,7 @@ document-intelligence-pipeline/
 │   └── workflows/
 │       └── tests.yml
 ├── .env.example
+├── ARCHITECTURE.md
 ├── docker-compose.yml
 ├── Dockerfile
 └── requirements.docker.txt
@@ -129,7 +135,7 @@ The LangGraph ReAct agent selects among three tools:
 DocuLens exposes its tools as an MCP server, allowing Claude Desktop to use DocuLens directly in conversation. Tested with Claude Desktop.
 
 **Available tools via MCP:**
-- `search_documents` — semantic search across FDA MAUDE reports using RAG
+- `search_documents` — semantic search across FDA MAUDE reports, returning matching excerpts (no LLM call, to avoid timeouts)
 - `retrieve_report` — fetch live reports from openFDA by device name
 - `extract_structured_fields` — two-pass causal chain extraction with critic evaluation
 
