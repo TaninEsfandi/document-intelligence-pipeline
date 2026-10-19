@@ -177,3 +177,7 @@ Once connected, Claude can search your FDA report database, retrieve live report
 ![DocuLens Dashboard](assets/dashboard.png)
 ![DocuLens RAG Chat](assets/rag_demo.png)
 ![DocuLens Structured Extraction](assets/layer3_demo.png)
+
+## License
+
+MIT — see [LICENSE](LICENSE)
