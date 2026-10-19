@@ -1,5 +1,10 @@
 # DocuLens 🔍
 
+[![Tests](https://github.com/TaninEsfandi/document-intelligence-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/TaninEsfandi/document-intelligence-pipeline/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Docker](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 > Transforming unstructured reports into structured, queryable data, 
 > making the messy documents that power critical business decisions usable.
 
@@ -18,23 +23,18 @@ DocuLens is built in four layers:
 
 | Layer | What it does | Status |
 |-------|-------------|--------|
-| 1 — Document Explorer | Connect to public APIs, retrieve documents | Complete |
-| 2 — RAG Assistant | Ask natural language questions, get cited answers | Complete |
-| 3 — Structured Extraction | Extract validated causal chains, two-pass LLM evaluation | Complete |
-| 4 — Agent | ReAct agent that orchestrates search, retrieval, and extraction tools | Complete |
+| 1 — Document Explorer | Connect to public APIs, retrieve documents | ✅ Complete |
+| 2 — RAG Assistant | Ask natural language questions, get cited answers | ✅ Complete |
+| 3 — Structured Extraction | Extract validated causal chains, two-pass LLM evaluation | ✅ Complete |
+| 4 — Agent | ReAct agent that orchestrates search, retrieval, and extraction tools | ✅ Complete |
 
-## Connectors
+## Results
 
-**Implemented**
-
-- FDA MAUDE — Medical-device adverse-event reports
-
-**Planned**
-
-- Health Canada medical-device reports
-- SEC EDGAR financial filings
-- Local PDF and DOCX files
-- Public web documents
+| Metric | Result |
+|--------|--------|
+| Agent tool selection accuracy | 5/5 |
+| Answer groundedness | 5/5 |
+| Average agent latency | 21.5s |
 
 ## Quick Start
 
@@ -85,18 +85,31 @@ document-intelligence-pipeline/
 │   │   ├── runner.py
 │   │   ├── extractor.py      
 │   │   └── evaluator.py      
+│   ├── config.py
+│   ├── logger.py
 │   ├── main.py
+│   ├── mcp_server.py
 │   └── streamlit_app.py
 ├── configs/
 │   └── prompts/
-│       ├── extraction_prompt.txt  
-│       └── critic_prompt.txt      
+│       ├── extraction_prompt.txt
+│       └── critic_prompt.txt
+├── tests/
+│   ├── test_extraction.py
+│   └── test_retriever.py
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+├── .env.example
+├── docker-compose.yml
+├── Dockerfile
+└── requirements.docker.txt
 ```
 
 ## Tech Stack
 
 Python · FastAPI · ChromaDB · Pydantic · Streamlit · 
-sentence-transformers · Ollama · MLflow · llama3.1:8b · two-pass LLM evaluation · LangGraph · MCP server
+sentence-transformers · Ollama · llama3.1:8b · LangGraph · MCP server · Docker · pytest · GitHub Actions
 
 ## Agentic Workflow
 
@@ -106,11 +119,14 @@ The LangGraph ReAct agent selects among three tools:
 - `retrieve_report` — retrieves FDA reports by device
 - `extract_structured_fields` — extracts and validates causal-chain fields
 
-Evaluation results: 5/5 tool selection accuracy, 5/5 groundedness, 21.5s average latency
+`extract_structured_fields` runs a two-pass LLM pipeline:
+
+1. **Extraction** — the LLM reads the report narrative and fills a Pydantic schema: root cause, hazardous situation, hazard outcome, corrective action, domain (Human / Built / Natural / None/unclear) and traceability (report-stated / partially inferred / primarily inferred).
+2. **Critic** — a second LLM call audits the extraction against the original report, checking for self-validation (repeating the report's own conclusions as verified fact), speculative claims with no support in the text, and hedging used in the wrong places. It returns an overall flag: `clean`, `minor` or `major`.
 
 ## MCP Integration
 
-DocuLens exposes its tools as an MCP server, allowing Claude Desktop to use DocuLens directly in conversation.
+DocuLens exposes its tools as an MCP server, allowing Claude Desktop to use DocuLens directly in conversation. Tested with Claude Desktop.
 
 **Available tools via MCP:**
 - `search_documents` — semantic search across FDA MAUDE reports using RAG
@@ -136,6 +152,19 @@ DocuLens exposes its tools as an MCP server, allowing Claude Desktop to use Docu
 3. In a new chat, check that **doculens** is enabled in the tools/connectors menu
 
 Once connected, Claude can search your FDA report database, retrieve live reports, and extract structured causal chains — all from a natural language conversation.
+
+## Connectors
+
+**Implemented**
+
+- FDA MAUDE — Medical-device adverse-event reports
+
+**Planned**
+
+- Health Canada medical-device reports
+- SEC EDGAR financial filings
+- Local PDF and DOCX files
+- Public web documents
 
 ## Demo
 
